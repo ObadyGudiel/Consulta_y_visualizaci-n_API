@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 15px 0;
+  border: none;
+  background: #ff9800;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e68900;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);  /* 👉 5 columnas exactas */
+  gap: 15px;
+  justify-items: center;
+  padding: 20px;
+}
+
+.galeria img {
+  width: 200px;           /* tamaño igual para todas */
+  height: 200px;
+  object-fit: cover;      /* recorta sin deformar */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.galeria img:hover {
+  transform: scale(1.05);
+}
