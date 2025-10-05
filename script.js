@@ -1,25 +1,30 @@
 const contenedor = document.getElementById("contenedor");
 
-async function cargarGatos() {
+async function cargarDatos() {
   try {
-    const res = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
-    if (!res.ok) throw new Error("Error en la API de gatos");
+    const res = await fetch("https://rickandmortyapi.com/api/character");
+    if (!res.ok) throw new Error("Error en la respuesta de la API");
     
     const data = await res.json();
-    mostrarGatos(data);
+    mostrarDatos(data.results);
   } catch (error) {
-    contenedor.innerHTML = `<p style="color:red;">Ocurrió un error: ${error.message}</p>`;
+    contenedor.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
   }
 }
 
-function mostrarGatos(gatos) {
+function mostrarDatos(personajes) {
   contenedor.innerHTML = "";
-  gatos.forEach(gato => {
-    const img = document.createElement("img");
-    img.src = gato.url;
-    contenedor.appendChild(img);
+  personajes.forEach(p => {
+    const div = document.createElement("div");
+    div.classList.add("card");
+    div.innerHTML = `
+      <img src="${p.image}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>Especie: ${p.species}</p>
+      <p>Status: ${p.status}</p>
+    `;
+    contenedor.appendChild(div);
   });
 }
 
-// Cargar gatos al iniciar
-cargarGatos();
+cargarDatos();
